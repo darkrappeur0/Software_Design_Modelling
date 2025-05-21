@@ -1,9 +1,12 @@
-package org.put.contest.sports.basketball;
+package org.put.sportspecific.scoringstrategy;
 
-import org.put.contest.events.Event;
-import org.put.contest.match.SportScoringStrategy;
+import org.put.common.events.Event;
+import org.put.common.match.SportScoringStrategy;
 
 public class BasketballScoringStrategy implements SportScoringStrategy {
+
+    public BasketballScoringStrategy() {
+    }
 
     /**
      * Increases the score based on the event type and other parameters.

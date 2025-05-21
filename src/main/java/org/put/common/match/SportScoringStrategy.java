@@ -1,6 +1,6 @@
-package org.put.contest.match;
+package org.put.common.match;
 
-import org.put.contest.events.Event;
+import org.put.common.events.Event;
 
 public interface SportScoringStrategy {
 

@@ -1,30 +1,24 @@
-package org.put.contest.contestant;
+package org.put.common.contestant;
 
-public class Player extends Contestant{
+public class Player extends Contestant {
     private int awardNumber;
-    private String nationality;
     private float height;
     private float weight;
-    
 
-    public Player(String name, String nationality, float height, float weight) {
-        this.name = name;
+    public Player(String name, String sportType, String nationality, float height, float weight) {
+        super(name, sportType, nationality);
         this.awardNumber = 0;
-        this.nationality = nationality
         this.height = height;
         this.weight = weight;
     }
 
+    @Override
     public String getName() {
-        return name;
+        return super.getName();
     }
 
     public int getAwardNumber() {
         return awardNumber;
-    }
-
-    public String getNationality() {
-        return  nationality;
     }
 
     public float getHeight() {
@@ -42,9 +36,8 @@ public class Player extends Contestant{
     @Override
     public String toString() {
         return "Player{" +
-                "name='" + name + '\'' +
+                "name='" + getName() + '\'' +
                 ", award number=" + awardNumber +
-                ", nationality=" + nationality +
                 ", height=" + height +
                 ", weight=" + weight +
                 '}';

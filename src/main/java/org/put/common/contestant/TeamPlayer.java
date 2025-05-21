@@ -1,4 +1,4 @@
-package org.put.contest.contestant;
+package org.put.common.contestant;
 
 public class TeamPlayer{
     private String name;
