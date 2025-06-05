@@ -10,8 +10,8 @@ public class RefereeEvent extends Event{
     private Event TriggerEvent;
     private Event FollowingEvent;
 
-    public RefereeEvent(Timestamp timestamp, String matchpart, Contestant contestant, int typeEvent, Contest contest, Result result,Event Trigger) {
-        super(timestamp, matchpart, contestant, typeEvent, contest, result);
+    public RefereeEvent(Timestamp timestamp, String matchpart, Contestant contestant, int typeEvent, Contest contest,Event Trigger) {
+        super(timestamp, matchpart, contestant, typeEvent, contest);
         TriggerEvent = Trigger;
     }
     public Event GetTriggerEvent(){
@@ -23,5 +23,5 @@ public class RefereeEvent extends Event{
     public void SetFollowingEvent(Event Following){
         FollowingEvent = Following;
     }
-    
+
 }

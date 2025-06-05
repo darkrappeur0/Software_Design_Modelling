@@ -7,7 +7,15 @@ import org.put.common.match.Result;
 import java.security.Timestamp;
 
 public class ScoringEvent extends Event {
-    public ScoringEvent(Timestamp timestamp, String matchpart, Contestant contestant, int typeEvent, Contest contest, Result result) {
-        super(timestamp, matchpart, contestant, typeEvent, contest, result);
+    private Result result;
+    
+    public ScoringEvent(Timestamp timestamp, String matchpart, Contestant contestant, int typeEvent, Contest contest) {
+        super(timestamp, matchpart, contestant, typeEvent, contest);
+        this.result = result;
     }
+
+    public Result getResult() {
+        return result;
+    }
+
 }

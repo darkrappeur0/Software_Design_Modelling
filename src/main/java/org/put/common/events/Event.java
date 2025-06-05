@@ -11,15 +11,14 @@ public abstract class Event {
     private final Contestant contestant;
     private final int typeEvent;
     private final Contest contest;
-    private Result result;
+    
 
-    public Event(Timestamp timestamp, String matchpart, Contestant contestant, int typeEvent, Contest contest, Result result) {
+    public Event(Timestamp timestamp, String matchpart, Contestant contestant, int typeEvent, Contest contest) {
         this.timestamp = timestamp;
         this.matchpart = matchpart;
         this.contestant = contestant;
         this.typeEvent = typeEvent;
         this.contest = contest;
-        this.result = result;
     }
 
     public Timestamp getTimestamp() {
@@ -41,9 +40,4 @@ public abstract class Event {
     public Contest getContest() {
         return contest;
     }
-
-    public Result getResult() {
-        return result;
-    }
-
 }
