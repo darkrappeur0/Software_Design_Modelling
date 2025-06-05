@@ -13,8 +13,8 @@ public class RefereeEvent extends Event{
     public RefereeEvent(Timestamp timestamp, String matchpart, Contestant contestant, Contest contest,Event Trigger) {
         super(timestamp, matchpart, contestant, 0, contest);
         TriggerEvent = Trigger;
-        if (Trigger.getTypeEvent()==0){
-            Trigger.setFollowingEvent(this);
+        if (trigger.getTypeEvent() == 0 && trigger instanceof RefereeEvent) {
+            ((RefereeEvent) trigger).setFollowingEvent(this);
         }
     }
     public Event getTriggerEvent(){
@@ -33,8 +33,8 @@ public class RefereeEvent extends Event{
                     " Timestamp: '" +getTimestamp() +'\'' +
                     "Match Part: '" +getMatchpart() +'\'' +
                     "Responsible '" +getContestant()+'\'' +
-                    "What trigger him'"+GetTriggerEvent()+'\'' +
-                    "What he triggered'"+GetFollowingEvent()+'\'' +
+                    "What trigger him'"+getTriggerEvent()+'\'' +
+                    "What he triggered'"+getFollowingEvent()+'\'' +
                     "}";
     }
 
