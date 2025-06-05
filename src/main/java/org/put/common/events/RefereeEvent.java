@@ -10,9 +10,12 @@ public class RefereeEvent extends Event{
     private Event TriggerEvent;
     private Event FollowingEvent;
 
-    public RefereeEvent(Timestamp timestamp, String matchpart, Contestant contestant, int typeEvent, Contest contest,Event Trigger) {
-        super(timestamp, matchpart, contestant, typeEvent, contest);
+    public RefereeEvent(Timestamp timestamp, String matchpart, Contestant contestant, Contest contest,Event Trigger) {
+        super(timestamp, matchpart, contestant, 0, contest);
         TriggerEvent = Trigger;
+        if (Trigger.getTypeEvent==0){
+            Trigger.SetFollowingEvent(this.self);
+        }
     }
     public Event GetTriggerEvent(){
         return TriggerEvent;
@@ -22,6 +25,17 @@ public class RefereeEvent extends Event{
     }
     public void SetFollowingEvent(Event Following){
         FollowingEvent = Following;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{"+
+                    " Timestamp: '" +getTimestamp() +'\'' +
+                    "Match Part: '" +getMatchpart() +'\'' +
+                    "Responsible '" +getContestant()+'\'' +
+                    "What trigger him'"+GetTriggerEvent()+'\'' +
+                    "What he triggered'"+GetFollowingEvent()+'\'' +
+                    "}";
     }
 
 }

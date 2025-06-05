@@ -40,4 +40,15 @@ public abstract class Event {
     public Contest getContest() {
         return contest;
     }
+
+    
+     @Override
+    public String toString() {
+        return "Event{"+
+                    " Timestamp: '" +getTimestamp() +'\'' +
+                    "Match Part: '" +getMatchpart() +'\'' +
+                    "Responsible '" +getContestant()+'\'' +
+                    "}";
+
+    }
 }
