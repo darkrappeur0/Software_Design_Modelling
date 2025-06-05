@@ -3,7 +3,7 @@ import org.put.common.Contest;
 import org.put.common.contestant.Contestant;
 import org.put.common.match.Result;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public abstract class Event {
     private final Timestamp timestamp;
