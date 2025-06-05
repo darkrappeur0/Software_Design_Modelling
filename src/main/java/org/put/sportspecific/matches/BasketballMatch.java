@@ -27,8 +27,7 @@ public class BasketballMatch extends Match {
 
     @Override
     protected void trackEvents() {
-        // Optional polling/subscription logic. 
-        // Typically you’ll just addEvent(...) externally, so no-op is fine.
+        // Optional polling/subscription logic.
     }
 
     @Override
