@@ -20,24 +20,24 @@ public class FootballMatch extends Match {
     }
 
     @Override
-    protected void start() {
+    public void start() {
         System.out.println("Football: Kickoff! 45‐minute half begins.");
         // Sport‐specific “start” logic here.
     }
 
     @Override
-    protected void trackEvents() {
+    public void trackEvents() {
         // Optional polling;
     }
 
     @Override
-    protected void stop() {
+    public void stop() {
         System.out.println("Football: Halftime whistle. 15‐minute break.");
         // Sport‐specific “pause” logic here.
     }
 
     @Override
-    protected void finish() {
+    public void finish() {
         System.out.println("Football: Full‐time whistle. 90 minutes complete.");
 
         List<Contestant> contestants = List.of(getHomeContestant(), getAwayContestant());

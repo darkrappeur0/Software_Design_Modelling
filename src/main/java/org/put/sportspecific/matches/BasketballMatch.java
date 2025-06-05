@@ -20,24 +20,24 @@ public class BasketballMatch extends Match {
     }
 
     @Override
-    protected void start() {
+    public void start() {
         System.out.println("Basketball: Tip‐off! Game clock starts.");
         // Any sport‐specific “start” logic goes here.
     }
 
     @Override
-    protected void trackEvents() {
+    public void trackEvents() {
         // Optional polling/subscription logic.
     }
 
     @Override
-    protected void stop() {
+    public void stop() {
         System.out.println("Basketball: Halftime / quarter break.");
         // Any sport‐specific “pause” logic goes here.
     }
 
     @Override
-    protected void finish() {
+    public void finish() {
         System.out.println("Basketball: Final buzzer. Tallying all points.");
 
         // Building a new Result, passing in the basketball strategy and [home, away]

@@ -14,11 +14,13 @@ public class TennisScoringStrategy implements SportScoringStrategy {
     @Override
     public int increaseScore(int baseScore, Event event) {
         if (event instanceof ScoringEvent) {
-            ScoringEvent scoring = (ScoringEvent) event;
-            Integer updatedSets = scoring.getResult()
-                                         .getScores()
-                                         .get(scoring.getContestant());
-            return (updatedSets != null) ? updatedSets : baseScore;
+            if (baseScore < 30) {
+                baseScore += 15;
+            } else if (baseScore == 30) {
+                baseScore += 10;
+            } else if (baseScore == 40) {
+                baseScore = 100; // Game point
+            }
         }
         return baseScore;
     }

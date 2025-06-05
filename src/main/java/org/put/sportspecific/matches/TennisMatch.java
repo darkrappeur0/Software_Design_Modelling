@@ -20,24 +20,25 @@ public class TennisMatch extends Match {
     }
 
     @Override
-    protected void start() {
+    public void start() {
         System.out.println("Tennis: Coin toss, first serve. Begin set 1.");
         // Sport‐specific “start” logic here.
+
     }
 
     @Override
-    protected void trackEvents() {
+    public void trackEvents() {
         // Optional polling; 
     }
 
     @Override
-    protected void stop() {
+    public void stop() {
         System.out.println("Tennis: End of set. Change‐over.");
         // Sport‐specific “pause” logic here.
     }
 
     @Override
-    protected void finish() {
+    public void finish() {
         System.out.println("Tennis: Match over. Final set complete.");
 
         List<Contestant> contestants = List.of(getHomeContestant(), getAwayContestant());

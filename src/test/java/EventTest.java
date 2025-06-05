@@ -18,8 +18,6 @@ class EventTest {
 
     @Test
     void testEventConstructorAndGetters() {
-
-
         Timestamp timestamp = new Timestamp(1839321);
         String matchpart = "First Half";
         Contestant contestant = new Player("John Doe", "Basketball", "Poland", 193, 89);

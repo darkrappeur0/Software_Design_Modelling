@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.put.common.contestant.Contestant;
 import org.put.common.events.Event;
+import org.put.common.events.ScoringEvent;
 
 public abstract class Match {
     private final Contestant homeContestant;
@@ -17,7 +18,7 @@ public abstract class Match {
      * Each Match carries its own OutcomeStrategy. Subclasses
      * must supply the correct strategy at construction time.
      */
-    protected final OutcomeStrategy outcomeStrategy;
+    private final OutcomeStrategy outcomeStrategy;
 
     /**
      * @param homeContestant   the “home” side
@@ -47,13 +48,16 @@ public abstract class Match {
     /** Add a new Event (e.g. basket, goal, point) to this match’s timeline. */
     public void addEvent(Event event) {
         events.add(event);
+        if (event instanceof ScoringEvent) {
+            result.update(event);
+        }
     }
 
     public Result getResult() {
         return result;
     }
 
-    protected void setResult(Result result) {
+    public void setResult(Result result) {
         this.result = result;
     }
 
@@ -79,19 +83,19 @@ public abstract class Match {
     }
 
     /** SPORT‐SPECIFIC: start the clock, notify any services, etc. */
-    protected abstract void start();
+    public abstract void start();
 
     /** SPORT‐SPECIFIC: a “pause” in play (e.g. halftime, set changeover). */
-    protected abstract void stop();
+    public abstract void stop();
 
     /** SPORT‐SPECIFIC: end of match—tally events → populate Result. */
-    protected abstract void finish();
+    public abstract void finish();
 
     /**
      * Hook: by default, does nothing. Overrided in subclass to
      * poll/subscription‐loop for real‐time Event objects.
      */
-    protected void trackEvents() {
+    public void trackEvents() {
         // Default: no continuous polling. Subclasses override if needed.
     }
 
@@ -102,7 +106,7 @@ public abstract class Match {
     }
 
     /** Uses the injected OutcomeStrategy to compute DRAW / WINNER_1 / WINNER_2. */
-    protected void evaluateOutcome() {
+    public void evaluateOutcome() {
         if (this.result == null) {
             throw new IllegalStateException("Result must be set before evaluating outcome.");
         }
