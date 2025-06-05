@@ -13,17 +13,17 @@ public class RefereeEvent extends Event{
     public RefereeEvent(Timestamp timestamp, String matchpart, Contestant contestant, Contest contest,Event Trigger) {
         super(timestamp, matchpart, contestant, 0, contest);
         TriggerEvent = Trigger;
-        if (Trigger.getTypeEvent==0){
-            Trigger.SetFollowingEvent(this.self);
+        if (Trigger.getTypeEvent()==0){
+            Trigger.setFollowingEvent(this);
         }
     }
-    public Event GetTriggerEvent(){
+    public Event getTriggerEvent(){
         return TriggerEvent;
     }
-    public Event GetFollowingEvent(){
+    public Event getFollowingEvent(){
         return FollowingEvent;
     }
-    public void SetFollowingEvent(Event Following){
+    public void setFollowingEvent(Event Following){
         FollowingEvent = Following;
     }
 

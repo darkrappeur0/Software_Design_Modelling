@@ -9,7 +9,7 @@ import java.security.Timestamp;
 public class ScoringEvent extends Event {
     private Result result;
 
-    public ScoringEvent(Timestamp timestamp, String matchpart, Contestant contestant,  Contest contest) {
+    public ScoringEvent(Timestamp timestamp, String matchpart, Contestant contestant,Result result,  Contest contest) {
         super(timestamp, matchpart, contestant, 1, contest);
         this.result = result;
     }
