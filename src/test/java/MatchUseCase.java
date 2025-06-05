@@ -5,6 +5,7 @@ import org.put.common.contestant.Team;
 import org.put.common.events.ScoringEvent;
 import org.put.common.match.Outcome;
 import org.put.common.match.Result;
+import org.put.common.match.OutcomeType;
 import org.put.sportspecific.matches.BasketballMatch;
 import org.put.sportspecific.matches.FootballMatch;
 import org.put.sportspecific.matches.TennisMatch;
@@ -36,12 +37,13 @@ class MatchFlowTest {
         match.start();
         match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Set 1", player1, result, contest));
         match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Set 1", player2, result, contest));
-        match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Set 1", player1, result, contest));
-        match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Set 1", player1, result, contest));
+        match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Set 1", player2, result, contest));
+        match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Set 1", player2, result, contest));
         match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Set 1", player1, result, contest));
         match.finish();
 
         match.evaluateOutcome();
+        assert match.getOutcomeType() == OutcomeType.WINNER_CONTESTANT_2;
     }
 
     @Test
@@ -56,13 +58,14 @@ class MatchFlowTest {
         contest.addMatch(match);
 
         match.start();
-        for(int i = 0; i < 5; i++) {
-            match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Quarter 1", team1, result, contest));
-            match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Quarter 1", team2, result, contest));
-        }
+        match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Quarter 1", team1, result, contest));
+        match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Quarter 2", team1, result, contest));
+        match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Quarter 3", team2, result, contest));
+        match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Quarter 4", team2, result, contest));
         match.finish();
 
         match.evaluateOutcome();
+        assert match.getOutcomeType() == OutcomeType.DRAW;
     }
 
     @Test
@@ -82,6 +85,7 @@ class MatchFlowTest {
         match.finish();
 
         match.evaluateOutcome();
+        assert match.getOutcomeType() == OutcomeType.DRAW;
     }
 
 }
