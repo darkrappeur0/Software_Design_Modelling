@@ -1,11 +1,18 @@
 import org.junit.jupiter.api.Test;
 import org.put.common.Contest;
 import org.put.common.contestant.Player;
+import org.put.common.contestant.Team;
 import org.put.common.events.ScoringEvent;
 import org.put.common.match.Outcome;
 import org.put.common.match.Result;
+import org.put.sportspecific.matches.BasketballMatch;
+import org.put.sportspecific.matches.FootballMatch;
 import org.put.sportspecific.matches.TennisMatch;
 import org.put.sportspecific.outcome.TennisOutcomeStrategy;
+import org.put.sportspecific.outcome.BasketballOutcomeStrategy;
+import org.put.sportspecific.outcome.FootballOutcomeStrategy;
+import org.put.sportspecific.scoringstrategy.BasketballScoringStrategy;
+import org.put.sportspecific.scoringstrategy.FootballScoringStrategy;   
 import org.put.sportspecific.scoringstrategy.TennisScoringStrategy;
 
 import java.sql.Timestamp;
@@ -36,4 +43,45 @@ class MatchFlowTest {
 
         match.evaluateOutcome();
     }
+
+    @Test
+    void testBasketballMatchFlow() {
+        var team1 = new Team("Team 1", "Basketball", "Spain");
+        var team2 = new Team("Team 2", "Basketball", "France");
+        Result result = new Result(new BasketballScoringStrategy(), List.of(team1, team2));
+
+        var contest = new Contest("Basketball Contest");
+        var match = new BasketballMatch(team1, team2);
+        match.setResult(result);
+        contest.addMatch(match);
+
+        match.start();
+        for(int i = 0; i < 5; i++) {
+            match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Quarter 1", team1, result, contest));
+            match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Quarter 1", team2, result, contest));
+        }
+        match.finish();
+
+        match.evaluateOutcome();
+    }
+
+    @Test
+    void testFootballMatchFlow() {
+        var team1 = new Team("Team 1", "Football", "Germany");
+        var team2 = new Team("Team 2", "Football", "Italy");
+        Result result = new Result(new FootballScoringStrategy(), List.of(team1, team2));
+
+        var contest = new Contest("Football Contest");
+        var match = new FootballMatch(team1, team2);
+        match.setResult(result);
+        contest.addMatch(match);
+
+        match.start();
+        match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "First Half", team1, result, contest));
+        match.addEvent(new ScoringEvent(Timestamp.from(Instant.now()), "Second Half", team2, result, contest));
+        match.finish();
+
+        match.evaluateOutcome();
+    }
+
 }
